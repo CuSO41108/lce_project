@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -30,12 +32,19 @@ public class RegisterServlet extends HttpServlet {
         boolean success = userService.register(user);
 
         response.setContentType("application/json");
-        if (success) {
-            response.getWriter().write(JSON.toJSONString("{\"code\":200, \"message\":\"注册成功\"}"));
+        Map<String, Object> result = new HashMap<>();
 
+        if (success) {
+//            response.getWriter().write(JSON.toJSONString("{\"code\":200, \"message\":\"注册成功\"}"));
+            result.put("code", 200);
+            result.put("message", "注册成功");
+            response.getWriter().write(JSON.toJSONString(result));
         }
         else {
-            response.getWriter().write(JSON.toJSONString("{\"code\":500, \"message\":\"注册失败\"}"));
+//            response.getWriter().write(JSON.toJSONString("{\"code\":500, \"message\":\"注册失败\"}"));
+            result.put("code", 500);
+            result.put("message", "注册失败");
+            response.getWriter().write(JSON.toJSONString(result));
         }
 
     }

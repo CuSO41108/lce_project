@@ -4,7 +4,7 @@ import com.lce.model.KnowledgeBase;
 import com.lce.util.DBUtil;
 import java.sql.*;
 
-public class KnowledgeBaseDao {
+public class KnowledgeBaseDao {//DAO 主要用于封装对数据库的 CRUD 操作。
     // 创建知识库
     public boolean createKnowledgeBase(KnowledgeBase knowledgeBase) {
         String sql = "INSERT INTO knowledge_base (name, introduction, creator_id, is_public) VALUES (?, ?, ?, ?)";
